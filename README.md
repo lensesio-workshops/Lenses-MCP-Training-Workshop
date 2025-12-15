@@ -13,4 +13,6 @@ Step 1: Log in and explore. Your instructor will have assigned you a Lenses URL 
 
 The first screen you see is the Environments screen. This is a listing of all the connected Kafka environments. For training purposes we will be working with an "on-prem" open source Kafka labedled Dev and a staging environment using Strimzi in the cloud. 
 
+![environments screen cap](/images/initial-env-page.jpg)
+
 
