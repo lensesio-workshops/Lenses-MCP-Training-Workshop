@@ -3,8 +3,11 @@
 ## Lab Outline
 
 Lab 1: Familiarize Yourself With Lenses UI
+
 Lab 2: Configure Your MCP Server
+
 Lab 3: Explore Data With Claude
+
 Lab 4: Build a Poison Pill Filter With Claude
 
 ### Lab 1: Familiarize Yourself With Lenses UI
