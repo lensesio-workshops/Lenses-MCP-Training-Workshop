@@ -15,4 +15,8 @@ The first screen you see is the Environments screen. This is a listing of all th
 
 ![environments screen cap](/images/initial-env-page.jpg)
 
+If you click on the next icon down on the right hand navigation bar that will take you to the Topics view. 
+
+![topics picker image](/images/topics-picker.jpg)
+
 
