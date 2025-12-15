@@ -30,4 +30,8 @@ The Topics view is fully searchable by both topic name as well as key names from
 
 Let's take a deeper dive into the sea_vessel_position_reports topic by hovering over it in the list and then clicking on the SQL button on the right hand side that appears when we hover. 
 
-![topics search image](/images/sql-studio-jump.jpeg)
+![topics hover click sql studio](/images/sql-studio-jump.jpeg)
+
+This moves us to the most commonly used aspect of Lenses - SQL Studio. It's designed for developers to interact with Lenses in a similar way they interact with code editors such as VS Code. By default when you click over from the topics view it will run a basic search in that topic showing the most current events across partitions in the topic.
+
+![topics sql-studio-first-view](/images/sql-studio-first-view.jpeg)
