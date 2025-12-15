@@ -19,4 +19,8 @@ If you click on the next icon down on the right hand navigation bar that will ta
 
 ![topics picker image](/images/topics-picker.jpg)
 
+This is the Topics view. It lists all the topics available across all your Kafka Environments. Note we are logged in here as Admin so we can view all topics. In the "real world" which topics appear here will depend on Lenses RBAC.
 
+The Topics view is fully searchable by both topic name as well as key names from each topic's schema. Do a search for the keyword "longitude" - this will surface all topics with geographical fields in them. Click on the Search in Schema tick box to surface all the key name matches for each topic as well.
+
+![topics search image](/images/topics-search.jpg)
