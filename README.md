@@ -17,6 +17,6 @@ The first screen you see is the Environments screen. This is a listing of all th
 
 If you click on the next icon down on the right hand navigation bar that will take you to the Topics view. 
 
-![topics picker image](/images/topics-picker-smol.jpg)
+![topics picker image](/images/topics-picker.jpg)
 
 
