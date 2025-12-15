@@ -24,3 +24,5 @@ This is the Topics view. It lists all the topics available across all your Kafka
 The Topics view is fully searchable by both topic name as well as key names from each topic's schema. Do a search for the keyword "longitude" - this will surface all topics with geographical fields in them. Click on the Search in Schema tick box to surface all the key name matches for each topic as well.
 
 ![topics search image](/images/topic-search.jpg)
+
+Let's take a deeper dive into the sea_vessel_position_reports topic by hovering over it in the list and then clicking on the SQL button on the right hand side that appears when we hover. 
