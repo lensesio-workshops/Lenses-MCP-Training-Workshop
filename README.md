@@ -52,8 +52,11 @@ Once your role is created click on it to modify it. Then click on Manage Permiss
 
 Copy and past the following into your mcp-admin permissions and then click Save Updates.
 
-```name: mcp-admin
+```
+name: mcp-admin
 policy:
   - action: '*'
     resource: '*'
-    effect: allow```
+    effect: allow
+```
+![iam save role settings](/images/iam-admin-save.jpg)
