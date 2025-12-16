@@ -46,7 +46,7 @@ Step 1: Configure Lenses IAM for your MCP Server. Your MCP server will need a Le
 
 First up we will need to create a role to define the limititations and permissions for our AI "user" to access Lenses via the MCP server. Click on Roles section at the top of the IAM screen. Then click on the orange "Add New Role" button in the middle of the screen. Call your roll MCP-admin. Lenses will automatically create a lower case version for the resource name. You can leave this, and fill in the description if you'd like. Click on create role. 
 
-![iam create role](/images/create-role1.png)
+![iam create role](/images/create-role1.jpg)
 
 Once your role is created click on it to modify it. Then click on Manage Permissions to go to the permissions editing screen. For simplicity purposes we are going to grant our MCP server admin rights to our Lenses cluster, but in the "real world" much better care should be given to limiting this sort of access. See Lenses documentation for details: https://docs.lenses.io/latest/user-guide/iam 
 
