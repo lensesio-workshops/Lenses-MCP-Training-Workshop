@@ -85,4 +85,8 @@ ssh -i <path to .pem file> ec2-user@<Public IP of your MCP server>
 
 ![ssh connect to server](/images/ssh-to-mcp.jpg)
 
+Once you've connected switch to the /opt/lenses-mcp directory `cd /opt/lenses-mcp`. In that directory is a hidden file called .env - this is where you configure your MCP settings. Run the following command to open the .env file in the vi editor. `sudo vi .env` (Note if you don't like vi, you can install Nano. You will need to run `sudo yum install nano` to install it.) 
 
+Now it's just a matter of filling out the form. Use your HQ URL provided by your instructor to fill out the form, then you will need to copy your Service Account key in as well. When it's all done it should look like this:
+
+![ssh env file](/images/env-file-filled.jpg)
