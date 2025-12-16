@@ -40,7 +40,7 @@ You can also view schemas, topic configurations, and connected consumers side by
 
 ### Lab 2: Configuring your MCP Server
 
-Step 1: Configure Lenses IAM for your MCP Server. Your MCP server will need a Lenses Service Account. We will need to configure a few settings in IAM to facilitate this. 
+Step 1: Create a role for your MCP server. Your MCP server will need a Lenses Service Account. We will need to configure a few settings in IAM to facilitate this. 
 
 ![iam button](/images/iam-pick.png)
 
@@ -60,3 +60,7 @@ policy:
     effect: allow
 ```
 ![iam save role settings](/images/iam-admin-save.jpg)
+
+Step 2: Create a group for your MCP Server role. In the upper left hand corner of the IAM screen click on the "Groups" button to create a group for our MCP Server role. Then click on the orange button "Add a new group." Call it MCP-admin-group and let Lenses populate the Resource name and SSO mapping name for you. At the bottom be sure to select your mcp-admin role from the dropdown. Then click on the "Create group" button. 
+
+![iam create group](/images/create-group.jpg)
