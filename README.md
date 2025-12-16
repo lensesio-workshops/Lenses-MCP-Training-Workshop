@@ -68,3 +68,7 @@ Step 2: Create a group for your MCP Server role. In the upper left hand corner o
 Step 3: Create Service account for your MCP server. Now that we have the group and role configured we can add our Service Account. On the top left select "Service accounts" and then click on the "Add a new service account" button. Give your new service account a name: MCP-admin-sa. Then at the bottom add it to the group you just created: "MCP-admin-group" and then select a key expiry time. For simplicity we will set ours to 7 days - but obviously in the real world this should reflect your own organization's security policy. Then click on "Create service account" button. 
 
 ![iam create service account](/images/create-service-account.jpg)
+
+Once the account is created Lenses will setup a service account key. We will need to provide this key to our MCP server to connect to Lenses. Be sure to copy your key to a text file before closing the screen if you don't have it for the next steps you'll need to come back and create an new service account to get a new key. When you have copied your key to a text document click on the "I have saved my key" button. 
+
+Now we have everything we need to configure our MCP server to connect to our Lenses installation. 
