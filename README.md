@@ -34,7 +34,7 @@ Step 3: Let's take a deeper dive into the sea_vessel_position_reports topic by h
 
 This moves us to the most commonly used aspect of Lenses - SQL Studio. It's designed for developers to interact with Lenses in a similar way they interact with code editors such as VS Code. By default when you click over from the topics view it will run a basic search in that topic showing the most current events across partitions in the topic.
 
-![topics sql-studio-first-view](/images/sql-studio-first-view.jpeg)
+![sql-studio-first-view](/images/sql-studio-first-view.jpeg)
 
 You can also view schemas, topic configurations, and connected consumers side by side with searching the topics. We will be using other aspects of Lenses UI later on in the course, feel free to explore a bit on your own before we pick the lecture back up.
 
@@ -42,4 +42,4 @@ You can also view schemas, topic configurations, and connected consumers side by
 
 Step 1: Configure Lenses IAM for your MCP Server. Your MCP server will need a Lenses Service Account. We will need to configure a few settings in IAM to facilitate this. 
 
-![topics sql-studio-first-view](/images/IAM-button.jpg)
+![iam button](/images/IAM-button.jpg)
