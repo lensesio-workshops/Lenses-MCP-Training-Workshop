@@ -42,4 +42,4 @@ You can also view schemas, topic configurations, and connected consumers side by
 
 Step 1: Configure Lenses IAM for your MCP Server. Your MCP server will need a Lenses Service Account. We will need to configure a few settings in IAM to facilitate this. 
 
-![iam button](/images/IAM-button.jpg)
+![iam button](/images/iam-pick.jpg)
