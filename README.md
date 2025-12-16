@@ -81,4 +81,8 @@ Using your SSH client of choice open up an SSH connection to your MCP server. He
 ssh -i <path to .pem file> ec2-user@<Public IP of your MCP server>
 ```
 
-(Note you will need to change the permissions of the .pem file `chmod 400 <path to .pem file>`
+(Note you will need to change the permissions of the .pem file `chmod 400 <path to .pem file>`)
+
+![ssh connect to server](/images/ssh-to-mcp.jpg)
+
+
