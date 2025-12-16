@@ -64,3 +64,7 @@ policy:
 Step 2: Create a group for your MCP Server role. In the upper left hand corner of the IAM screen click on the "Groups" button to create a group for our MCP Server role. Then click on the orange button "Add a new group." Call it MCP-admin-group and let Lenses populate the Resource name and SSO mapping name for you. At the bottom be sure to select your mcp-admin role from the dropdown. Then click on the "Create group" button. 
 
 ![iam create group](/images/create-group.jpg)
+
+Step 3: Create Service account for your MCP server. Now that we have the group and role configured we can add our Service Account. On the top left select "Service accounts" and then click on the "Add a new service account" button. Give your new service account a name: MCP-admin-sa. Then at the bottom add it to the group you just created: "MCP-admin-group" and then select a key expiry time. For simplicity we will set ours to 7 days - but obviously in the real world this should reflect your own organization's security policy. Then click on "Create service account" button. 
+
+![iam create service account](/images/create-service-account.jpg)
