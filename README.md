@@ -43,3 +43,7 @@ You can also view schemas, topic configurations, and connected consumers side by
 Step 1: Configure Lenses IAM for your MCP Server. Your MCP server will need a Lenses Service Account. We will need to configure a few settings in IAM to facilitate this. 
 
 ![iam button](/images/iam-pick.png)
+
+First up we will need to create a role to define the limititations and permissions for our AI "user" to access Lenses via the MCP server. Click on Roles section at the top of the IAM screen. Then click on the orange "Add New Role" button in the middle of the screen. Call your roll MCP-admin. Lenses will automatically create a lower case version for the resource name. You can leave this, and fill in the description if you'd like. 
+
+![iam create role](/images/create-role.png)
