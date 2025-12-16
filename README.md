@@ -89,7 +89,7 @@ Once you've connected switch to the /opt/lenses-mcp directory `cd /opt/lenses-mc
 
 Now it's just a matter of filling out the form. Use your HQ URL provided by your instructor to fill out the form, then you will need to copy your Service Account key in as well. When it's all done it should look like this:
 
-![ssh env file](/images/updated-env-file.jpg)
+![ssh env file](/images/updated-env-file1.jpg)
 
 Once you are done editing the file save your changes and exit your file editor. Then run the following command to restart the MCP server to make it reload the config file you just updated. `sudo systemctl restart lenses-mcp`
 
