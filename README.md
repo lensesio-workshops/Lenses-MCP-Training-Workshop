@@ -18,7 +18,7 @@ The first screen you see is the Environments screen. This is a listing of all th
 
 ![environments screen cap](/images/initial-env-page.jpg)
 
-If you click on the next icon down on the right hand navigation bar that will take you to the Topics view. 
+Step 2: If you click on the next icon down on the right hand navigation bar that will take you to the Topics view. 
 
 ![topics picker image](/images/topics-picker.jpg)
 
@@ -28,10 +28,18 @@ The Topics view is fully searchable by both topic name as well as key names from
 
 ![topics search image](/images/topic-search.jpg)
 
-Let's take a deeper dive into the sea_vessel_position_reports topic by hovering over it in the list and then clicking on the SQL button on the right hand side that appears when we hover. 
+Step 3: Let's take a deeper dive into the sea_vessel_position_reports topic by hovering over it in the list and then clicking on the SQL button on the right hand side that appears when we hover. 
 
 ![topics hover click sql studio](/images/sql-studio-jump.jpeg)
 
 This moves us to the most commonly used aspect of Lenses - SQL Studio. It's designed for developers to interact with Lenses in a similar way they interact with code editors such as VS Code. By default when you click over from the topics view it will run a basic search in that topic showing the most current events across partitions in the topic.
 
 ![topics sql-studio-first-view](/images/sql-studio-first-view.jpeg)
+
+You can also view schemas, topic configurations, and connected consumers side by side with searching the topics. We will be using other aspects of Lenses UI later on in the course, feel free to explore a bit on your own before we pick the lecture back up.
+
+### Lab 2: Configuring your MCP Server
+
+Step 1: Configure Lenses IAM for your MCP Server. Your MCP server will need a Lenses Service Account. We will need to configure a few settings in IAM to facilitate this. 
+
+![topics sql-studio-first-view](/images/IAM-button.jpg)
