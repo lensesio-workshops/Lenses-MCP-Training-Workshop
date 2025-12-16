@@ -72,3 +72,13 @@ Step 3: Create Service account for your MCP server. Now that we have the group a
 Once the account is created Lenses will setup a service account key. We will need to provide this key to our MCP server to connect to Lenses. Be sure to copy your key to a text file before closing the screen if you don't have it for the next steps you'll need to come back and create an new service account to get a new key. When you have copied your key to a text document click on the "I have saved my key" button. 
 
 Now we have everything we need to configure our MCP server to connect to our Lenses installation. 
+
+Step 4: SSH in to your MCP server. Your instructor will provide you with the URL and .pem file to SSH in to your MCP server to configure it with your Lenses service account information. 
+
+Using your SSH client of choice open up an SSH connection to your MCP server. Here's the SSH command to use for Mac and Linux
+
+```
+ssh -i <path to .pem file> ec2-user@<Public IP of your MCP server>
+```
+
+(Note you will need to change the permissions of the .pem file `chmod 400 <path to .pem file>`
