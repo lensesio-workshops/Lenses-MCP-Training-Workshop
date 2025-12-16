@@ -99,4 +99,4 @@ Connect and login to claude.ai. Under your account go to Settings. Then go to Co
 
 Then it just a matter of giving your Lenses MCP connection an name and filling in the URL for your server you obtained from your instructor. Click "Add" when you're done. 
 
-![configure claude](/images/configure-claude.jpg)
+![configure claude](/images/configure-claude1.jpg)
