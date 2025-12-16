@@ -90,3 +90,13 @@ Once you've connected switch to the /opt/lenses-mcp directory `cd /opt/lenses-mc
 Now it's just a matter of filling out the form. Use your HQ URL provided by your instructor to fill out the form, then you will need to copy your Service Account key in as well. When it's all done it should look like this:
 
 ![ssh env file](/images/env-file-filled.jpg)
+
+Once you are done editing the file save your changes and exit your file editor. Then run the following command to restart the MCP server to make it reload the config file you just updated. `sudo systemctl restart lenses-mcp`
+
+Step 5: Connect your Lenses MCP server to Claude.ai. Now our Lenses MCP server is fully connected to Lenses. We just have one last step: connect Claude AI to the MCP server. 
+
+Connect and login to claude.ai. Under your account go to Settings. Then go to Connectors and click on "Add custom connector"
+
+Then it just a matter of giving your Lenses MCP connection an name and filling in the URL for your server you obtained from your instructor.
+
+![configure claude](/images/configure-claude.jpg)
