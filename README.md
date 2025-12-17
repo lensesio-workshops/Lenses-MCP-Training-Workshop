@@ -133,7 +133,7 @@ WHERE fare_amount < 0
 ```
 ![sql taxi results](/images/sql-taxi-results.jpg)
 
-Now that we know these events exist and are fairly common let's get Claude to write us some SQL Processor statements will that will do this filtering for us. 
+Step 2: Now that we know these events exist and are fairly common let's get Claude to write us some SQL Processor statements will that will do this filtering for us. 
 
 Here's an example prompt:
 
@@ -149,7 +149,7 @@ Note that last statement is because Claude can confuse the SQL Studio syntax fro
 
 Hopefully your Claude iteration will give you a result that looks similar to this. If he seems way off base send him back to work with a reminder that SQL Studio Processing is different than SQL Studio Syntax. 
 
-Once he's come up with the proper SQL for your processor. Drill down into your Dev cluster and go to the App section. 
+Step 3: Once he's come up with the proper SQL for your processor. Drill down into your Dev cluster and go to the App section. 
 
 ![apps-picker](/images/apps-picker.jpg)
 
@@ -157,6 +157,14 @@ In the Apps screen click on "Create SQL Processor." Give it a name like "taxi-tr
 
 Note! Sometimes Claude "forgets" to put ```SET defaults.topic.autocreate=true;``` in the SQL statement so leave that in pre-filled box if necessary. 
 
-Once you've got the SQL copied and there's no listed errors. Click on the Create "Processor Button."
+Once you've got the SQL copied and there's no listed errors. Click on the "Create Processor" button.
 
 ![sql processor create](/images/sql-proc-create.jpg)
+
+Once the processor is created click on the Start Processor button to kick it off. Once it's up and running go to the Topology View to see it represented there. 
+
+![topology view](/images/topology-view.jpg)
+
+Then go to the topics viewer and check out your two new topics. 
+
+
