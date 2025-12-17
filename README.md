@@ -152,3 +152,11 @@ Hopefully your Claude iteration will give you a result that looks similar to thi
 Once he's come up with the proper SQL for your processor. Drill down into your Dev cluster and go to the App section. 
 
 ![apps-picker](/images/apps-picker.jpg)
+
+In the Apps screen click on "Create SQL Processor." Give it a name like "taxi-trips-poison-pill-filter" and then copy and paste in the SQL from Claude. 
+
+Note! Sometimes Claude "forgets" to put ```SET defaults.topic.autocreate=true;``` in the SQL statement so leave that in pre-filled box if necessary. 
+
+Once you've got the SQL copied and there's no listed errors. Click on the Create "Processor Button."
+
+![sql processor create](/images/sql-proc-create.jpg)
