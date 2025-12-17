@@ -133,5 +133,17 @@ WHERE fare_amount < 0
 ```
 ![sql taxi results](/images/sql-taxi-results.jpg)
 
+Now that we know these events exist and are fairly common let's get Claude to write us some SQL Processor statements will that will do this filtering for us. 
 
+Here's an example prompt:
+
+```
+There are events with errors (poison pills) in the nyc_yellow_taxi_trip_data topic on our dev kafka cluster. events with fare_amount < 0
+Write a lenses sql processor to filter out these poison pills into their own separate topic. this sql processor should create two new topics. One with just the poison pills called nyc_taxi_dlq and another called nyc_taxi_filtered.
+Be careful Claude. SQL Processors use a different SQL syntax than SQL Studio in lenses. It's stream processing so keep that in mind when you double check the SQL you're going to write.
+```
+
+Note that last statement is because Claude can confuse the SQL Studio syntax from the SQL Processor syntax - which is mostly similar but there are a few key differences.
+
+![claude processor](/images/claude-processor.jpg)
 
