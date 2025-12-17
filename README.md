@@ -103,4 +103,19 @@ Then it just a matter of giving your Lenses MCP connection an name and filling i
 
 Once connected you can now use Claude to query and communicate with Lenses and it's underlying data streams. 
 
-Add section here about connecting Context7 for Lenses docs and adding a directive to Claude to use such docs. 
+### Add section here about connecting Context7 for Lenses docs and adding a directive to Claude to use such docs???? 
+
+### Lab 3: Explore Data With Claude
+
+Step 1: Now that Claude is all hooked up, let's have him help us explore the data flowing through Kafka. You will notice there are many different financial type topics on both of our clusters. Prompt Claude to take a look at one of these topics to see what kinds of patterns of fraud he can spot. 
+
+We are purposely leaving this part of the lab more open since your results will be non-deterministic. Claude or another LLM will answer each question you pose in a slightly different way. But to get you started here are a few example prompts:
+
+```
+using your lenses mcp connection can you scan the most recent 100 transactions from the paypal-transactions topic in the staging environment for signs of possible fraud?
+```
+For these types of open-ended operations it's best to keep your sample sizes small to keep from running out of compute tokens.
+
+![configure claude](/images/claude-results.jpg)
+
+
