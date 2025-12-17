@@ -116,6 +116,22 @@ using your lenses mcp connection can you scan the most recent 100 transactions f
 ```
 For these types of open-ended operations it's best to keep your sample sizes small to keep from running out of compute tokens.
 
-![configure claude](/images/claude-results.jpg)
+![claude results](/images/claude-results.jpg)
+
+Step 2: Get Claude to follow up with his initial findings? Are there geographical anomolies in the data? Sales types that don't fit the vendors? Explore away. 
+
+### Lab 4: Build a Poison Pill Filter
+
+Step 1: Using Lenses SQL Studio let's do a search for bad records or poison pills in our nyc_yellow_taxi_trip_data. Specifically we are going to look for negative fare amounts since even a cancelled trip will have at worst a fare amount of zero. 
+
+Open up the Lenses UI SQL Studio and find the nyc_taxi_trip_data in your dev environment. Run the following SQL search to see if these types of events exist:
+
+```
+SELECT *
+FROM nyc_yellow_taxi_trip_data
+WHERE fare_amount < 0
+```
+![sql taxi results](/images/sql-taxi-results.jpg)
+
 
 
