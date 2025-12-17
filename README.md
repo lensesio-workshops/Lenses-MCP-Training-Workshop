@@ -147,3 +147,8 @@ Note that last statement is because Claude can confuse the SQL Studio syntax fro
 
 ![claude processor](/images/claude-processor.jpg)
 
+Hopefully your Claude iteration will give you a result that looks similar to this. If he seems way off base send him back to work with a reminder that SQL Studio Processing is different than SQL Studio Syntax. 
+
+Once he's come up with the proper SQL for your processor. Drill down into your Dev cluster and go to the App section. 
+
+![apps-picker](/images/apps-picker.jpg)
