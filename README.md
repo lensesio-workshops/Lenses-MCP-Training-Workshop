@@ -38,62 +38,9 @@ This moves us to the most commonly used aspect of Lenses - SQL Studio. It's desi
 
 You can also view schemas, topic configurations, and connected consumers side by side with searching the topics. We will be using other aspects of Lenses UI later on in the course, feel free to explore a bit on your own before we pick the lecture back up.
 
-### Lab 2: Configuring your MCP Server
+### Lab 2: Connecting your LLM to Lenses MCP
 
-Step 1: Create a role for your MCP server. Your MCP server will need a Lenses Service Account. We will need to configure a few settings in IAM to facilitate this. 
-
-![iam button](/images/iam-pick.png)
-
-First up we will need to create a role to define the limititations and permissions for our AI "user" to access Lenses via the MCP server. Click on Roles section at the top of the IAM screen. Then click on the orange "Add New Role" button in the middle of the screen. Call your roll MCP-admin. Lenses will automatically create a lower case version for the resource name. You can leave this, and fill in the description if you'd like. Click on create role. 
-
-![iam create role](/images/create-role1.jpg)
-
-Once your role is created click on it to modify it. Then click on Manage Permissions to go to the permissions editing screen. For simplicity purposes we are going to grant our MCP server admin rights to our Lenses cluster, but in the "real world" much better care should be given to limiting this sort of access. See Lenses documentation for details: https://docs.lenses.io/latest/user-guide/iam 
-
-Copy and past the following into your mcp-admin permissions and then click Save Updates.
-
-```
-name: mcp-admin
-policy:
-  - action: '*'
-    resource: '*'
-    effect: allow
-```
-![iam save role settings](/images/iam-admin-save.jpg)
-
-Step 2: Create a group for your MCP Server role. In the upper left hand corner of the IAM screen click on the "Groups" button to create a group for our MCP Server role. Then click on the orange button "Add a new group." Call it MCP-admin-group and let Lenses populate the Resource name and SSO mapping name for you. At the bottom be sure to select your mcp-admin role from the dropdown. Then click on the "Create group" button. 
-
-![iam create group](/images/create-group.jpg)
-
-Step 3: Create Service account for your MCP server. Now that we have the group and role configured we can add our Service Account. On the top left select "Service accounts" and then click on the "Add a new service account" button. Give your new service account a name: MCP-admin-sa. Then at the bottom add it to the group you just created: "MCP-admin-group" and then select a key expiry time. For simplicity we will set ours to 7 days - but obviously in the real world this should reflect your own organization's security policy. Then click on "Create service account" button. 
-
-![iam create service account](/images/create-service-account.jpg)
-
-Once the account is created Lenses will setup a service account key. We will need to provide this key to our MCP server to connect to Lenses. Be sure to copy your key to a text file before closing the screen if you don't have it for the next steps you'll need to come back and create an new service account to get a new key. When you have copied your key to a text document click on the "I have saved my key" button. 
-
-Now we have everything we need to configure our MCP server to connect to our Lenses installation. 
-
-Step 4: SSH in to your MCP server. Your instructor will provide you with the URL and .pem file to SSH in to your MCP server to configure it with your Lenses service account information. 
-
-Using your SSH client of choice open up an SSH connection to your MCP server. Here's the SSH command to use for Mac and Linux
-
-```
-ssh -i <path to .pem file> ec2-user@<Public IP of your MCP server>
-```
-
-(Note you will need to change the permissions of the .pem file `chmod 400 <path to .pem file>`)
-
-![ssh connect to server](/images/ssh-to-mcp.jpg)
-
-Once you've connected switch to the /opt/lenses-mcp directory `cd /opt/lenses-mcp`. In that directory is a hidden file called .env - this is where you configure your MCP settings. Run the following command to open the .env file in the vi editor. `sudo vi .env` (Note if you don't like vi, you can install Nano. You will need to run `sudo yum install nano` to install it.) 
-
-Now it's just a matter of filling out the form. Use your HQ URL provided by your instructor to fill out the form, then you will need to copy your Service Account key in as well. When it's all done it should look like this:
-
-![ssh env file](/images/updated-env-file1.jpg)
-
-Once you are done editing the file save your changes and exit your file editor. Then run the following command to restart the MCP server to make it reload the config file you just updated. `sudo systemctl restart lenses-mcp`
-
-Step 5: Connect your Lenses MCP server to Claude.ai. Now our Lenses MCP server is fully connected to Lenses. We just have one last step: connect Claude AI to the MCP server. 
+Step 1: Connect your Lenses MCP server to Claude.ai.
 
 Connect and login to claude.ai. Under your account go to Settings. Then go to Connectors and click on "Add custom connector"
 
@@ -105,20 +52,113 @@ Once connected you can now use Claude to query and communicate with Lenses and i
 
 ### Add section here about connecting Context7 for Lenses docs and adding a directive to Claude to use such docs???? 
 
-### Lab 3: Explore Data With Claude
+# Lab 3: Explore Data With Claude
 
-Step 1: Now that Claude is all hooked up, let's have him help us explore the data flowing through Kafka. You will notice there are many different financial type topics on both of our clusters. Prompt Claude to take a look at one of these topics to see what kinds of patterns of fraud he can spot. 
+In this lab you'll use Claude and the Lenses MCP connection to perform common developer tasks: understanding unfamiliar data, validating schemas before building consumers, and generating test data requirements.
 
-We are purposely leaving this part of the lab more open since your results will be non-deterministic. Claude or another LLM will answer each question you pose in a slightly different way. But to get you started here are a few example prompts:
+## Lab 3A: Schema Discovery & Documentation
+
+**Scenario:** You've just joined a team that works with airline data streams. Before you can contribute, you need to understand what data is available and how the topics relate to each other.
+
+**Step 1:** Ask Claude to survey the available airline-related topics in your environment.
 
 ```
-using your lenses mcp connection can you scan the most recent 100 transactions from the paypal-transactions topic in the staging environment for signs of possible fraud?
+Using your Lenses MCP connection, list all topics in the staging environment that appear to be related to airline or flight data. For each topic, tell me:
+- The topic name
+- Number of partitions
+- Whether it has a schema registered
 ```
-For these types of open-ended operations it's best to keep your sample sizes small to keep from running out of compute tokens.
 
-![claude results](/images/claude-results.jpg)
+**Step 2:** Once you have a list of topics, pick 2-3 that seem related and ask Claude to examine their schemas in detail.
 
-Step 2: Get Claude to follow up with his initial findings? Are there geographical anomolies in the data? Sales types that don't fit the vendors? Explore away. 
+```
+Examine the schemas for [topic1] and [topic2] in staging. 
+Give me a field-by-field breakdown including data types.
+Do these topics share any common fields that could be used to join or correlate events?
+```
+
+**Step 3:** Have Claude generate a quick data dictionary you could share with your team.
+
+```
+Based on what you've learned about these airline topics, generate a markdown data dictionary I could add to our team's documentation. Include topic names, descriptions of what each topic likely contains, key fields, and any relationships between topics.
+```
+
+This is exactly how developers use MCP in practice - rapid exploration of unfamiliar data landscapes without having to manually click through dozens of topics in a UI.
+
+---
+
+## Lab 3B: Data Validation for a New Consumer
+
+**Scenario:** You've been assigned to build a new microservice that consumes financial transaction data. Before writing any code, you need to understand the actual data format, edge cases, and potential gotchas.
+
+**Step 1:** Start by sampling real messages to understand what you'll be working with.
+
+```
+I'm building a consumer for the credit_card_transactions topic in the dev environment. 
+Sample 20 recent messages and give me a summary:
+- What fields are present in every message?
+- Are there any null or missing fields I'll need to handle defensively?
+- What are the data types for each field?
+```
+
+**Step 2:** Understand the value ranges and distributions you'll need to handle.
+
+```
+Looking at those same messages from credit_card_transactions:
+- What's the range of transaction amounts?
+- What are all the different values you see for status or transaction_type fields?
+- Are there any fields with unexpected or potentially problematic values?
+```
+
+**Step 3:** Generate test fixtures for your consumer code.
+
+```
+Based on your analysis of credit_card_transactions, give me 3 representative JSON messages I can use as test fixtures:
+1. A "happy path" typical transaction
+2. An edge case with minimum/maximum values
+3. A message with any optional or nullable fields set to null
+```
+
+This workflow helps you write robust consumer code from day one, rather than discovering edge cases in production.
+
+---
+
+## Lab 3C: Building Test Data Requirements
+
+**Scenario:** Your team needs integration tests that use realistic data. Rather than inventing fake data that might not match production patterns, you'll analyze real streams to build accurate test data specifications.
+
+**Step 1:** Pick a topic and have Claude analyze the actual patterns in the data.
+
+```
+Analyze the sea_vessel_position_reports topic in dev. Sample 50 messages and tell me:
+- What are the realistic ranges for latitude and longitude?
+- What vessel_type values appear and how frequently?
+- What's the typical format and length of vessel identifiers?
+- Are there any fields that follow specific patterns (like timestamps or codes)?
+```
+
+**Step 2:** Ask Claude to identify edge cases that your tests should cover.
+
+```
+Based on your analysis of sea_vessel_position_reports, what edge cases should our integration tests cover? 
+Look for:
+- Boundary values (min/max coordinates, speeds, etc.)
+- Rare but valid values in enum-like fields
+- Any data quality issues we should test our error handling against
+```
+
+**Step 3:** Have Claude generate a test data specification document.
+
+```
+Generate a test data specification for sea_vessel_position_reports that our team can use to build realistic mock data. Format it as a markdown document with:
+- Field names and types
+- Valid value ranges with examples
+- Required vs optional fields
+- Edge cases to include in test suites
+- Sample valid and invalid messages
+```
+
+This approach ensures your test data reflects actual production patterns, making your integration tests far more valuable.
 
 ### Lab 4: Build a Poison Pill Filter
 
