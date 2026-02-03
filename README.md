@@ -95,7 +95,7 @@ This is exactly how developers use MCP in practice - rapid exploration of unfami
 
 ```
 I'm building a consumer for the credit_card_transactions topic in the dev environment. 
-Sample 20 recent messages and give me a summary:
+Sample 100 recent messages and give me a summary:
 - What fields are present in every message?
 - Are there any null or missing fields I'll need to handle defensively?
 - What are the data types for each field?
