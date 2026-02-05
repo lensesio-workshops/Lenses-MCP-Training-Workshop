@@ -54,8 +54,6 @@ For example in Claude.ai you would go to Settings > Connectors > "Add custom con
 
 Once connected you can now use your LLM to query and communicate with Lenses and its underlying data streams. 
 
-### Add section here about connecting Context7 for Lenses docs and adding a directive to your LLM to use such docs???? 
-
 ### Lab 3: Explore Data With Your LLM
 
 In this lab you'll use your LLM and the Lenses MCP connection to perform common developer tasks: understanding unfamiliar data, validating schemas before building consumers, and generating test data requirements.
