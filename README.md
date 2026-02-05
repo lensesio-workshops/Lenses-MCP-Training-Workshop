@@ -1,11 +1,11 @@
 # Lenses MCP Training Workshop Hands-On Labs
-<!-- v. 3 -->
+<!-- v. 4 -->
 
 ## Lab Outline
 
 Lab 1: Familiarize Yourself With Lenses UI
 
-Lab 2: Connect your AI with Lenses MCP
+Lab 2: Configure Your MCP Server
 
 Lab 3: Explore Data With Your LLM
 
@@ -42,7 +42,9 @@ This moves us to the most commonly used aspect of Lenses - SQL Studio. It's desi
 You can also view schemas, topic configurations, and connected consumers side by side with searching the topics. We will be using other aspects of Lenses UI later on in the course, feel free to explore a bit on your own before we pick the lecture back up.
 
 
-Step 5: Connect your Lenses MCP server to your LLM. Now our Lenses MCP server is fully connected to Lenses. We just have one last step: connect your LLM to the MCP server. 
+### Lab 2: Configure Your MCP Server
+
+Step 1: Connect your Lenses MCP server to your LLM. 
 
 Your instructor will provide connection instructions specific to the LLM you are using. The general process is the same regardless of which LLM client you choose: provide the MCP server URL to your LLM's MCP connector settings.
 
@@ -56,18 +58,111 @@ Once connected you can now use your LLM to query and communicate with Lenses and
 
 ### Lab 3: Explore Data With Your LLM
 
-Step 1: Now that your LLM is all hooked up, let's have it help us explore the data flowing through Kafka. You will notice there are many different financial type topics on both of our clusters. Prompt your LLM to take a look at one of these topics to see what kinds of patterns of fraud it can spot. 
+In this lab you'll use your LLM and the Lenses MCP connection to perform common developer tasks: understanding unfamiliar data, validating schemas before building consumers, and generating test data requirements.
 
-We are purposely leaving this part of the lab more open since your results will be non-deterministic. Any LLM will answer each question you pose in a slightly different way. But to get you started here are a few example prompts:
+#### Lab 3A: Schema Discovery & Documentation
+
+**Scenario:** You've just joined a team that works with airline data streams. Before you can contribute, you need to understand what data is available and how the topics relate to each other.
+
+**Step 1:** Ask your LLM to survey the available airline-related topics in your environment.
 
 ```
-using your lenses mcp connection can you scan the most recent 100 transactions from the paypal-transactions topic in the staging environment for signs of possible fraud?
+Using your Lenses MCP connection, list all topics in the staging environment that appear to be related to airline or flight data. For each topic, tell me:
+- The topic name
+- Number of partitions
+- Whether it has a schema registered
 ```
-For these types of open-ended operations it's best to keep your sample sizes small to keep from running out of compute tokens.
 
-![claude results](/images/claude-results.jpg)
+**Step 2:** Once you have a list of topics, pick 2-3 that seem related and ask your LLM to examine their schemas in detail.
 
-Step 2: Get your LLM to follow up on its initial findings. Are there geographical anomalies in the data? Sales types that don't fit the vendors? Explore away. 
+```
+Examine the schemas for [topic1] and [topic2] in staging. 
+Give me a field-by-field breakdown including data types.
+Do these topics share any common fields that could be used to join or correlate events?
+```
+
+**Step 3:** Have your LLM generate a quick data dictionary you could share with your team.
+
+```
+Based on what you've learned about these airline topics, generate a markdown data dictionary I could add to our team's documentation. Include topic names, descriptions of what each topic likely contains, key fields, and any relationships between topics.
+```
+
+This is exactly how developers use MCP in practice — rapid exploration of unfamiliar data landscapes without having to manually click through dozens of topics in a UI.
+
+---
+
+#### Lab 3B: Data Validation for a New Consumer
+
+**Scenario:** You've been assigned to build a new microservice that consumes financial transaction data. Before writing any code, you need to understand the actual data format, edge cases, and potential gotchas.
+
+**Step 1:** Start by sampling real messages to understand what you'll be working with.
+
+```
+I'm building a consumer for the credit-card-transactions topic in the dev environment. 
+Sample 100 recent messages and give me a summary:
+- What fields are present in every message?
+- Are there any null or missing fields I'll need to handle defensively?
+- What are the data types for each field?
+```
+
+**Step 2:** Understand the value ranges and distributions you'll need to handle.
+
+```
+Looking at those same messages from credit-card-transactions:
+- What's the range of transaction amounts?
+- What are all the different values you see for status or transaction_type fields?
+- Are there any fields with unexpected or potentially problematic values?
+```
+
+**Step 3:** Generate test fixtures for your consumer code.
+
+```
+Based on your analysis of credit-card-transactions, give me 3 representative JSON messages I can use as test fixtures:
+1. A "happy path" typical transaction
+2. An edge case with minimum/maximum values
+3. A message with any optional or nullable fields set to null
+```
+
+This workflow helps you write robust consumer code from day one, rather than discovering edge cases in production.
+
+---
+
+#### Lab 3C: Building Test Data Requirements
+
+**Scenario:** Your team needs integration tests that use realistic data. Rather than inventing fake data that might not match production patterns, you'll analyze real streams to build accurate test data specifications.
+
+**Step 1:** Pick a topic and have your LLM analyze the actual patterns in the data.
+
+```
+Analyze the sea_vessel_position_reports topic in dev. Sample 50 messages and tell me:
+- What are the realistic ranges for latitude and longitude?
+- What vessel_type values appear and how frequently?
+- What's the typical format and length of vessel identifiers?
+- Are there any fields that follow specific patterns (like timestamps or codes)?
+```
+
+**Step 2:** Ask your LLM to identify edge cases that your tests should cover.
+
+```
+Based on your analysis of sea_vessel_position_reports, what edge cases should our integration tests cover? 
+Look for:
+- Boundary values (min/max coordinates, speeds, etc.)
+- Rare but valid values in enum-like fields
+- Any data quality issues we should test our error handling against
+```
+
+**Step 3:** Have your LLM generate a test data specification document.
+
+```
+Generate a test data specification for sea_vessel_position_reports that our team can use to build realistic mock data. Format it as a markdown document with:
+- Field names and types
+- Valid value ranges with examples
+- Required vs optional fields
+- Edge cases to include in test suites
+- Sample valid and invalid messages
+```
+
+This approach ensures your test data reflects actual production patterns, making your integration tests far more valuable. 
 
 ### Lab 4: Write SQL Queries With Your LLM
 
